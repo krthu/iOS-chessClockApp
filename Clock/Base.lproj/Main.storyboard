@@ -16,42 +16,35 @@
                         <rect key="frame" x="0.0" y="0.0" width="393" height="852"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="GqJ-JS-kVk">
-                                <rect key="frame" x="97" y="200" width="199" height="21"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="21" id="TJo-ht-MuE"/>
-                                    <constraint firstAttribute="width" constant="199" id="Xo8-ge-T7t"/>
-                                </constraints>
-                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
-                                <nil key="textColor"/>
-                                <nil key="highlightedColor"/>
-                            </label>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-gw-Yjs">
-                                <rect key="frame" x="213" y="525" width="68" height="35"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="35" id="8ss-oe-auG"/>
-                                    <constraint firstAttribute="width" constant="68" id="ClA-JR-Fzo"/>
-                                </constraints>
+                            <button opaque="NO" tag="2" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-gw-Yjs">
+                                <rect key="frame" x="16" y="59" width="361" height="355"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled" title="Clock"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Player 2">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="showClock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7w1-5x-2Nf"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" tag="1" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="VeN-r9-9uO">
+                                <rect key="frame" x="16" y="463" width="361" height="355"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <state key="normal" title="Button"/>
+                                <buttonConfiguration key="configuration" style="filled" title="Player 1">
+                                    <fontDescription key="titleFontDescription" name="HelveticaNeue-Bold" family="Helvetica Neue" pointSize="31"/>
+                                </buttonConfiguration>
+                                <connections>
+                                    <action selector="showClock:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7FG-Ez-c3R"/>
                                 </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
-                        <constraints>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="hDf-gw-Yjs" secondAttribute="bottom" constant="258" id="BRt-WN-JgX"/>
-                            <constraint firstItem="GqJ-JS-kVk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="141" id="kpd-Yu-OU5"/>
-                            <constraint firstItem="GqJ-JS-kVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="o8O-dk-9zD"/>
-                            <constraint firstItem="GqJ-JS-kVk" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="141" id="pMj-ib-7ZM"/>
-                            <constraint firstItem="GqJ-JS-kVk" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="xZX-Of-l1y"/>
-                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hDf-gw-Yjs" secondAttribute="trailing" constant="112" id="ySL-WC-86Q"/>
-                        </constraints>
                     </view>
                     <connections>
-                        <outlet property="counterLabel" destination="GqJ-JS-kVk" id="PNf-xd-cHM"/>
+                        <outlet property="player1Button" destination="VeN-r9-9uO" id="QEy-Fa-Wxu"/>
+                        <outlet property="player2Button" destination="hDf-gw-Yjs" id="pPq-t6-xZ3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
