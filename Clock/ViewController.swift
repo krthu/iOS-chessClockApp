@@ -153,7 +153,7 @@ class ViewController: UIViewController {
     var date = Date()
     func updatePlayerTime(timer: Timer? = nil){
         let newdate = Date()
-    
+        
         if isPlayer1Active {
             if let player1Manager = player1Manager{
                 if !player1Manager.timePassed(){
@@ -174,11 +174,12 @@ class ViewController: UIViewController {
                     stopClock()
                 }
             }
-
-        let diff = newdate.timeIntervalSince(date)
-        print(diff)
-        date = newdate
-        
+            
+            let diff = newdate.timeIntervalSince(date)
+            print(diff)
+            date = newdate
+            
+        }
     }
     
     
