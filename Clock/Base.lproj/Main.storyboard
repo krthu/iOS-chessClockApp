@@ -3,6 +3,7 @@
     <device id="retina6_12" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="22684"/>
+        <capability name="Named colors" minToolsVersion="9.0"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -17,10 +18,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <button opaque="NO" tag="2" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="hDf-gw-Yjs">
-                                <rect key="frame" x="16" y="59" width="361" height="355"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="355" id="4Fd-jo-azv"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="59" width="361" height="353.66666666666669"/>
                                 <color key="tintColor" systemColor="systemMintColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="filled"/>
@@ -33,19 +31,18 @@
                                 <constraints>
                                     <constraint firstAttribute="height" constant="355" id="PFV-Gu-inX"/>
                                 </constraints>
-                                <color key="tintColor" systemColor="systemMintColor"/>
+                                <color key="tintColor" name="AccentColor"/>
                                 <state key="normal" title="Button"/>
-                                <buttonConfiguration key="configuration" style="filled"/>
+                                <buttonConfiguration key="configuration" style="filled">
+                                    <color key="baseBackgroundColor" systemColor="systemMintColor"/>
+                                </buttonConfiguration>
                                 <connections>
                                     <action selector="startClockButtonPressed:" destination="BYZ-38-t0r" eventType="touchUpInside" id="7FG-Ez-c3R"/>
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="iDH-b2-lVT">
-                                <rect key="frame" x="171" y="422" width="51" height="33"/>
+                                <rect key="frame" x="171" y="420.66666666666669" width="51" height="34.333333333333314"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="rCX-bM-Xxm"/>
-                                </constraints>
                                 <color key="tintColor" systemColor="systemMintColor"/>
                                 <state key="normal" title="Button"/>
                                 <buttonConfiguration key="configuration" style="tinted" image="pause.fill" catalog="system">
@@ -56,10 +53,7 @@
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Hello!" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="uFO-eI-oUv">
-                                <rect key="frame" x="41" y="205" width="310" height="62"/>
-                                <constraints>
-                                    <constraint firstAttribute="width" constant="310" id="SjW-Bc-FGs"/>
-                                </constraints>
+                                <rect key="frame" x="16" y="205" width="361" height="62"/>
                                 <fontDescription key="fontDescription" name="HelveticaNeue" family="Helvetica Neue" pointSize="53"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -75,7 +69,7 @@
                                 <nil key="highlightedColor"/>
                             </label>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IrC-9X-ER0">
-                                <rect key="frame" x="16" y="422" width="79" height="33"/>
+                                <rect key="frame" x="16" y="420.66666666666669" width="79" height="33"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="79" id="0gK-QR-tHg"/>
@@ -91,10 +85,9 @@
                                 </connections>
                             </button>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="b29-VP-Nv7">
-                                <rect key="frame" x="326" y="422" width="51" height="33"/>
+                                <rect key="frame" x="326" y="420.66666666666669" width="51" height="34.333333333333314"/>
                                 <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="33" id="P40-ms-CzC"/>
                                     <constraint firstAttribute="width" constant="51" id="muy-O7-asA"/>
                                 </constraints>
                                 <color key="tintColor" systemColor="systemMintColor"/>
@@ -111,24 +104,30 @@
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
-                            <constraint firstItem="iDH-b2-lVT" firstAttribute="top" secondItem="hDf-gw-Yjs" secondAttribute="bottom" constant="8" symbolic="YES" id="8p4-be-0HI"/>
+                            <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="uFO-eI-oUv" secondAttribute="trailing" constant="16" id="0Hf-2R-GMZ"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="iDH-b2-lVT" secondAttribute="trailing" constant="171" id="8wz-lw-syq"/>
                             <constraint firstItem="hDf-gw-Yjs" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="B8j-cD-odS"/>
                             <constraint firstItem="IrC-9X-ER0" firstAttribute="top" secondItem="hDf-gw-Yjs" secondAttribute="bottom" constant="8" symbolic="YES" id="FqJ-iy-vGu"/>
                             <constraint firstItem="kf6-Zh-ozt" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="HEn-Hp-Rlg"/>
+                            <constraint firstItem="iDH-b2-lVT" firstAttribute="top" secondItem="hDf-gw-Yjs" secondAttribute="bottom" constant="8" id="Iex-aW-mUP"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="hDf-gw-Yjs" secondAttribute="trailing" constant="16" id="K9Y-e0-kwU"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="kf6-Zh-ozt" secondAttribute="bottom" constant="145.66999999999999" id="L9S-cZ-6c9"/>
                             <constraint firstItem="VeN-r9-9uO" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="OBf-EI-S1Z"/>
                             <constraint firstItem="VeN-r9-9uO" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="QDX-5u-hBc"/>
                             <constraint firstItem="hDf-gw-Yjs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="R2b-aT-rTe"/>
+                            <constraint firstItem="uFO-eI-oUv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="R3X-FS-SXA"/>
                             <constraint firstItem="b29-VP-Nv7" firstAttribute="trailing" secondItem="hDf-gw-Yjs" secondAttribute="trailing" id="U5N-BH-FZy"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="VeN-r9-9uO" secondAttribute="trailing" constant="16" id="WiZ-qg-5QD"/>
                             <constraint firstItem="b29-VP-Nv7" firstAttribute="baseline" secondItem="iDH-b2-lVT" secondAttribute="baseline" id="aaK-rJ-faY"/>
                             <constraint firstItem="iDH-b2-lVT" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="171" id="dX8-Na-Bbn"/>
-                            <constraint firstItem="uFO-eI-oUv" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="41" id="evq-yv-KFc"/>
+                            <constraint firstItem="VeN-r9-9uO" firstAttribute="top" secondItem="iDH-b2-lVT" secondAttribute="bottom" constant="8" id="hWH-BX-DQK"/>
                             <constraint firstItem="hDf-gw-Yjs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="jhM-Vu-8WL"/>
                             <constraint firstItem="IrC-9X-ER0" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="16" id="nRP-TQ-ZXJ"/>
                             <constraint firstItem="uFO-eI-oUv" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" constant="146" id="qIe-Yy-PaT"/>
+                            <constraint firstItem="hDf-gw-Yjs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="s9Q-ui-oIl"/>
+                            <constraint firstItem="VeN-r9-9uO" firstAttribute="top" secondItem="b29-VP-Nv7" secondAttribute="bottom" constant="8" id="uCe-Zc-EJY"/>
+                            <constraint firstItem="hDf-gw-Yjs" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="z9A-BP-qvd"/>
+                            <constraint firstItem="b29-VP-Nv7" firstAttribute="top" secondItem="hDf-gw-Yjs" secondAttribute="bottom" constant="8" id="zQJ-S3-NK2"/>
                         </constraints>
                     </view>
                     <connections>
@@ -225,12 +224,15 @@
                 <placeholder placeholderIdentifier="IBFirstResponder" id="IX6-ef-nh3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="CAr-af-QlQ" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
-            <point key="canvasLocation" x="910.68702290076328" y="-25.35211267605634"/>
+            <point key="canvasLocation" x="894" y="-29"/>
         </scene>
     </scenes>
     <resources>
         <image name="pause.fill" catalog="system" width="117" height="128"/>
         <image name="stop.fill" catalog="system" width="128" height="113"/>
+        <namedColor name="AccentColor">
+            <color red="0.0" green="0.46000000000000002" blue="0.89000000000000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        </namedColor>
         <systemColor name="systemMintColor">
             <color red="0.0" green="0.78039215689999997" blue="0.74509803919999995" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

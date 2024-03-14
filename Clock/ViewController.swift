@@ -38,8 +38,6 @@ class ViewController: UIViewController {
     var gameTime = 5
     var bonusSecondsPerMove = 10
     
-    var timeLeftPlayer1 = 5 * 60
-    var timeLeftPlayer2 = 5 * 60
     var isPlayer1Active = false
     let player1 = Player(timeLeftInSeconds: 5 * 60)
     let player2 = Player(timeLeftInSeconds: 5 * 60)
@@ -61,7 +59,6 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         player2Label.transform = CGAffineTransform(rotationAngle: CGFloat.pi)
-
         
         player2Manager = PlayerUiManager(label: player2Label, player: player2, button: player2Button)
         player1Manager = PlayerUiManager(label: player1Label, player: player1, button: player1Button)
@@ -75,7 +72,6 @@ class ViewController: UIViewController {
     func setupForNewGame(){
         player1Manager?.player.timeLeftInSeconds = gameTime * 60
         player2Manager?.player.timeLeftInSeconds = gameTime * 60
-        
     }
     
     func middleButtons(){
@@ -98,8 +94,11 @@ class ViewController: UIViewController {
         player2Manager?.button.isEnabled = true
         player1Manager?.label.textColor = .black
         player2Manager?.label.textColor = .black
+        player1Manager?.button.backgroundColor = nil
+        player2Manager?.button.backgroundColor = nil
         
         stopButton.isEnabled = false
+        stopButton.setImage(UIImage(systemName: "stop.fill"), for: .normal)
         pausButton.isEnabled = false
         menuButton.isEnabled = true
         
@@ -123,15 +122,14 @@ class ViewController: UIViewController {
         }else{
             sender.tag == 1 ? player1Manager?.moveIsMade(bonusSecodnsToAdd: bonusSecondsPerMove) : player2Manager?.moveIsMade(bonusSecodnsToAdd: bonusSecondsPerMove)
         }
+        
         player1Button.isEnabled = isPlayer1Active
         player2Button.isEnabled = !isPlayer1Active
         
         player1Manager?.label.textColor = isPlayer1Active ? .black : .darkGray
         player2Manager?.label.textColor = !isPlayer1Active ? .black : .darkGray
-        
-        
-        
     }
+    
     func startClock(){
         if timer == nil {
             timer = Timer.scheduledTimer(withTimeInterval: 1, repeats: true, block:updatePlayerTime(timer:))
@@ -152,12 +150,17 @@ class ViewController: UIViewController {
         }
     }
     
+    var date = Date()
     func updatePlayerTime(timer: Timer? = nil){
+        let newdate = Date()
     
         if isPlayer1Active {
             if let player1Manager = player1Manager{
                 if !player1Manager.timePassed(){
                     print("Player 1 Lost")
+                    
+                    player1Manager.button.backgroundColor = .red
+                    gameOver()
                     stopClock()
                 }
             }
@@ -165,10 +168,27 @@ class ViewController: UIViewController {
             if let player2Manager = player2Manager {
                 if !player2Manager.timePassed(){
                     print("Player 2 Lost")
+                    
+                    player2Manager.button.backgroundColor = .red
+                    gameOver()
                     stopClock()
                 }
             }
-        }
+
+        let diff = newdate.timeIntervalSince(date)
+        print(diff)
+        date = newdate
+        
+    }
+    
+    
+    func gameOver(){
+        player1Manager?.button.isEnabled = false
+        player2Manager?.button.isEnabled = false
+        pausButton.isEnabled = false
+        menuButton.isEnabled = true
+        stopButton.setImage(UIImage(systemName: "arrow.clockwise"), for: .normal)
+        
     }
     
     @IBAction func menuButtonPressed(_ sender: UIButton) {
@@ -203,20 +223,33 @@ class ViewController: UIViewController {
     }
     
     @IBAction func stopButtonPress(_ sender: Any) {
-        let alertController = UIAlertController(title: "Stop Clock", message: "Do you want to end the game?", preferredStyle: .alert)
-        let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
-            self.stopClock()
-            self.setupForNewGame()
-            self.setupUIForNewGame()
-        }
-        let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in
-            self.startClock()
-        }
-        alertController.addAction(cancelAction)
         
-        alertController.addAction(okAction)
-        present(alertController, animated: true)
+        if player1Manager?.player.timeLeftInSeconds != 0 && player2Manager?.player.timeLeftInSeconds != 0 {
+            
+            let alertController = UIAlertController(title: "Stop Clock", message: "Do you want to end the game?", preferredStyle: .alert)
+            let okAction = UIAlertAction(title: "Yes", style: .default) { (action) in
+                self.stopClock()
+                self.setupForNewGame()
+                self.setupUIForNewGame()
+            }
+            let cancelAction = UIAlertAction(title: "No", style: .cancel) { (action) in
+                self.startClock()
+            }
+            cancelAction.setValue(UIColor.black, forKey: "titleTextColor")
+            okAction.setValue(UIColor.black, forKey: "titleTextColor")
+           
+            alertController.addAction(okAction)
+            alertController.addAction(cancelAction)
+            
+            
+            present(alertController, animated: true)
+        } else {
+            setupForNewGame()
+            setupUIForNewGame()
+        }
+        
     }
+
     
     deinit {
         stopClock()
