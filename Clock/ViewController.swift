@@ -40,7 +40,6 @@ struct PlayerUiManager {
     }
     
     func fadeInExtraTime(){
-        print("Fade IN ")
         UIView.animate(withDuration: 0.5, animations: {
             extraTimeLabel.alpha = 1
         }) 
