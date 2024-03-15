@@ -9,7 +9,7 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
-    var gameTime : Int?
+    var gameTime : Double?
     var extraTime : Int?
 
     @IBOutlet weak var gameTimeInput: UITextField!
@@ -21,7 +21,7 @@ class MenuViewController: UIViewController {
         modalPresentationStyle = .popover
         if let gameTime = gameTime,
            let extraTime = extraTime{
-            gameTimeInput.text = String(gameTime)
+            gameTimeInput.text = String(Int(gameTime))
             extraTimeInput.text = String(extraTime)
         }
     }
@@ -33,7 +33,7 @@ class MenuViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let gameTimeText = gameTimeInput.text{
             if let newGameTime = Int(gameTimeText){
-                gameTime = newGameTime
+                gameTime = Double(newGameTime)
             }
         }
         
@@ -42,28 +42,12 @@ class MenuViewController: UIViewController {
                 extraTime = newExtraTime
             }
         }
-        //gameTime = Int(gameTimeInput.text)
+
         makeSegue()
     }
     
     func makeSegue(){
         performSegue(withIdentifier: "unwindToParentViewController", sender: self)
     }
-    
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "unwindToParentViewController"{
-//            if let destinationVC = segue.destination as? ViewController{
-//                if let gameTime = gameTime,
-//                    let extraTime = extraTime {
-//                    destinationVC.gameTime = gameTime
-//                    destinationVC.bonusSecondsPerMove = extraTime
-//                    
-//                }
-//
-//            }
-//        }
-  //  }
-    
-    
     
 }

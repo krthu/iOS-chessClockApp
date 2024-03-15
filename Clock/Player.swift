@@ -7,30 +7,36 @@
 
 import Foundation
 class Player {
-    var timeLeftInSeconds: Int
+
+    var timeLeftInSecondsDouble : Double
     
-    init(timeLeftInSeconds: Int) {
-        self.timeLeftInSeconds = timeLeftInSeconds
+    init(timeLeftInSecondsDouble: Double) {
+
+        self.timeLeftInSecondsDouble = timeLeftInSecondsDouble
+        
     }
     
-    func decreaseTime() -> Bool{
-        timeLeftInSeconds -= 1
-        if timeLeftInSeconds == 0 {
+    func decreaseTime(elapsedTime: Double) -> Bool{
+        timeLeftInSecondsDouble -= elapsedTime
+        if timeLeftInSecondsDouble <= 0 {
             return false
         } else {
             return true
         }
     }
-    
     func bonusSecondsTo(add bonusTime: Int){
-        timeLeftInSeconds += bonusTime
+        
+        timeLeftInSecondsDouble += Double(bonusTime)
     }
     
-    func getTimeString() -> String{
-        let hours = timeLeftInSeconds / 3600
-        let remainingTime = timeLeftInSeconds % 3600
-        let minutes = remainingTime / 60
-        let secounds = remainingTime % 60
+
+    func getTimeStringDouble() -> String{
+        let roundedTimeLeft = timeLeftInSecondsDouble.rounded()
+    
+        let hours = Int(roundedTimeLeft / 3600)
+        let minutes = Int(roundedTimeLeft.truncatingRemainder(dividingBy: 3600)/60)
+        let secounds = Int(roundedTimeLeft.truncatingRemainder(dividingBy: 60))
+        
         if hours == 0 {
             return String(format: "%02d:%02d", minutes, secounds)
         }
