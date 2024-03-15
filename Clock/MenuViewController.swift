@@ -9,7 +9,7 @@ import UIKit
 
 class MenuViewController: UIViewController {
     
-    var gameTime : Int?
+    var gameTime : Double?
     var extraTime : Int?
 
     @IBOutlet weak var gameTimeInput: UITextField!
@@ -33,7 +33,7 @@ class MenuViewController: UIViewController {
     @IBAction func saveButtonPressed(_ sender: UIButton) {
         if let gameTimeText = gameTimeInput.text{
             if let newGameTime = Int(gameTimeText){
-                gameTime = newGameTime
+                gameTime = Double(newGameTime)
             }
         }
         

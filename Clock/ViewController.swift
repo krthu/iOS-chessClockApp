@@ -13,8 +13,8 @@ struct PlayerUiManager {
     let player : Player
     let button : UIButton
     
-    func timePassed() -> Bool{
-        let timeIsUp = player.decreaseTime()
+    func timePassed(elapsedTime: Double) -> Bool{
+        let timeIsUp = player.decreaseTime(elapsedTime: elapsedTime)
         updateTimeLabel()
         return timeIsUp
     }
@@ -25,7 +25,10 @@ struct PlayerUiManager {
     }
     
     func updateTimeLabel(){
-        label.text = player.getTimeString()
+//        label.text = player.getTimeString()
+        label.text = player.getTimeStringDouble()
+        
+        
     }
 }
 
@@ -35,12 +38,13 @@ class ViewController: UIViewController {
     let formatter = DateFormatter()
     var timer : Timer?
     
-    var gameTime = 5
+    var gameTime = 5.0
     var bonusSecondsPerMove = 10
+    var time = Date().timeIntervalSince1970
     
     var isPlayer1Active = false
-    let player1 = Player(timeLeftInSeconds: 5 * 60)
-    let player2 = Player(timeLeftInSeconds: 5 * 60)
+    let player1 = Player(timeLeftInSeconds: 5 * 60, timeLeftInSecondsDouble: 5.0 * 60)
+    let player2 = Player(timeLeftInSeconds: 5 * 60, timeLeftInSecondsDouble: 5.0 * 60 )
     var player2Manager : PlayerUiManager? = nil
     var player1Manager : PlayerUiManager? = nil
     
@@ -70,8 +74,12 @@ class ViewController: UIViewController {
     }
     
     func setupForNewGame(){
-        player1Manager?.player.timeLeftInSeconds = gameTime * 60
-        player2Manager?.player.timeLeftInSeconds = gameTime * 60
+//        player1Manager?.player.timeLeftInSeconds = gameTime * 60
+//        player2Manager?.player.timeLeftInSeconds = gameTime * 60
+        
+        player1Manager?.player.timeLeftInSecondsDouble = gameTime * 60
+        player2Manager?.player.timeLeftInSecondsDouble = gameTime * 60
+        
     }
     
     func middleButtons(){
@@ -102,7 +110,7 @@ class ViewController: UIViewController {
         pausButton.isEnabled = false
         menuButton.isEnabled = true
         
-        menuButton.setTitle("\(gameTime):\(bonusSecondsPerMove)", for: .normal)
+        menuButton.setTitle("\(Int(gameTime)):\(bonusSecondsPerMove)", for: .normal)
     }
     
     @IBAction func startClockButtonPressed(_ sender: UIButton) {
@@ -122,7 +130,7 @@ class ViewController: UIViewController {
         }else{
             sender.tag == 1 ? player1Manager?.moveIsMade(bonusSecodnsToAdd: bonusSecondsPerMove) : player2Manager?.moveIsMade(bonusSecodnsToAdd: bonusSecondsPerMove)
         }
-        
+        time = Date().timeIntervalSince1970
         player1Button.isEnabled = isPlayer1Active
         player2Button.isEnabled = !isPlayer1Active
         
@@ -150,13 +158,15 @@ class ViewController: UIViewController {
         }
     }
     
-    var date = Date()
+
     func updatePlayerTime(timer: Timer? = nil){
-        let newdate = Date()
+        let newtime = Date().timeIntervalSince1970
+        let elaspedTime = newtime - time
+        print(elaspedTime)
         
         if isPlayer1Active {
             if let player1Manager = player1Manager{
-                if !player1Manager.timePassed(){
+                if !player1Manager.timePassed(elapsedTime: elaspedTime){
                     print("Player 1 Lost")
                     
                     player1Manager.button.backgroundColor = .red
@@ -166,7 +176,7 @@ class ViewController: UIViewController {
             }
         }else{
             if let player2Manager = player2Manager {
-                if !player2Manager.timePassed(){
+                if !player2Manager.timePassed(elapsedTime: elaspedTime){
                     print("Player 2 Lost")
                     
                     player2Manager.button.backgroundColor = .red
@@ -174,12 +184,8 @@ class ViewController: UIViewController {
                     stopClock()
                 }
             }
-            
-            let diff = newdate.timeIntervalSince(date)
-            print(diff)
-            date = newdate
-            
         }
+        time = newtime
     }
     
     
